@@ -1,13 +1,19 @@
-<app-header></app-header>
+<app-header>
+  <app-button [buttonText]="headerButtonText" [iconName]="headerButtonIconName"></app-button>
+</app-header>
 <div class="app-root">
   <!-- Search component -->
   <!--<app-search></app-search>-->
 
   <!-- Info component -->
-  <!--<app-info></app-info>-->
+<app-info [text]="appInfoText" [title]="appInfoTitle">
+	<app-button [buttonText]="appInfoButtonText" [iconName]="appInfoButtonIconName"></app-button>
+</app-info>
 
   <!-- Course Card component -->
-  <!--<app-course-card></app-course-card>-->
+<app-courses-list>
+  <app-course-card></app-course-card>
+</app-courses-list>
 
   <!-- Login Form component -->
   <!--<app-login-form></app-login-form>-->
