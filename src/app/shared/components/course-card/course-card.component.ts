@@ -12,7 +12,7 @@ export class CourseCardComponent {
   @Input() creationDate!: string;
   @Input() duration!: number;
   @Input() authors!: string[];
-  @Input() editable!: boolean;
+  @Input() editable: boolean = true;
 
   @Output() clickOnShow = new EventEmitter<void>();
 

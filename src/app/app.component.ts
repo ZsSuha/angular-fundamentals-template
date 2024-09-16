@@ -9,9 +9,8 @@ export class AppComponent {
   constructor() {}
   title = 'courses-app';
   headerButtonText = "LOGIN";
-	headerButtonIconName: "delete" | "edit" | "" = "";
+	buttonIconName: "trash" | "pencil" | "" = "";
 	appInfoText = "Please use 'Add new Course' button to add your first course";
 	appInfoTitle = "Your List Is Empty";
 	appInfoButtonText = "ADD NEW COURSE";
-	appInfoButtonIconName = "";
 }

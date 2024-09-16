@@ -13,10 +13,12 @@
             <div><b>Created: </b><span class="course-card__date">{{ formatDate(creationDate) }}</span></div>
         </div>
         <div class="course-card__info-actions">
-            <app-button></app-button>
             <div class="course-card__buttons">
                 <app-button buttonText = "Show course" (click) = "showCourse()"></app-button>
-                <ng-content *ngIf="editable"></ng-content>
+                <ng-container *ngIf="editable">
+                    <app-button buttonText="Edit course"></app-button>
+                    <app-button buttonText="Delete course"></app-button>
+                </ng-container>
             </div>
         </div>
     </div>
