@@ -13,22 +13,19 @@
           formControlName="name"
           required
         />
-        <span 
-          id="nameErrorMessage1"
+        <div
+          id="nameErrorMessage"
           class="text-danger"
-          *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)"
+          *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)"
         >
-          Name is required.
-        </span>
-        <span
-          id="nameErrorMessage2"
-          class="text-danger"
-          *ngIf="registrationForm.get('name')?.hasError('minlength') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)"
-        >
-          Name must be at least 6 characters.
-        </span>
+          <span *ngIf="registrationForm.get('name')?.hasError('required')">
+            Name is required.
+          </span>
+          <span *ngIf="registrationForm.get('name')?.hasError('minlength')">
+            Name must be at least 6 characters.
+          </span>
+        </div>
       </div>
-
       <div class="form__control">
         <label for="email">Email</label>
         <input 
