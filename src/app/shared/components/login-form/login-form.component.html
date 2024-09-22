@@ -22,7 +22,7 @@
           class="text-danger"
         >
           <span *ngIf="emailModel.errors?.['required']">Email is required.</span>
-          <span *ngIf="emailModel.errors?.['email']">Invalid email format.</span>
+          <span *ngIf="emailModel.errors?.['invalidEmail']">Invalid email format.</span>
         </div>
       </div>
 

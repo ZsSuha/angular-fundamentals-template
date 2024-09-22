@@ -13,12 +13,18 @@
           formControlName="name"
           required
         />
-        <span class="text-danger" 
-          *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
+        <span 
+          class="text-danger"
+          id="nameErrorMessage1"
+          *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)"
+        >
           Name is required.
         </span>
-        <span class="text-danger" 
-          *ngIf="registrationForm.get('name')?.hasError('minlength') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
+        <span
+          id="nameErrorMessage2"
+          class="text-danger"
+          *ngIf="registrationForm.get('name')?.hasError('minlength') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)"
+        >
           Name must be at least 6 characters.
         </span>
       </div>
@@ -34,7 +40,11 @@
           required
           emailValidator
         />
-        <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)" class="text-danger">
+        <div 
+          id="emailErrorMessage"  
+          class="text-danger" 
+          *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)"
+        >
           <span *ngIf="registrationForm.get('email')?.hasError('required')">
             Email is required.
           </span>
@@ -54,9 +64,10 @@
           formControlName="password"
           required
         />
-        <div 
-        *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)" 
+        <div
+        id="passwordErrorMessage"
         class="text-danger"
+        *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)" 
         >
           <span *ngIf="registrationForm.get('password')?.hasError('required')">
             Password is required.
