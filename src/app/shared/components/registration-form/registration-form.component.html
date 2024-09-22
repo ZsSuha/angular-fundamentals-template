@@ -2,6 +2,7 @@
 <div class="app-plate">
   <form [formGroup]="registrationForm" (ngSubmit)="onFormSubmit()">
     <div class="registration-form">
+
       <div class="form__control">
         <label for="name">Name</label>
         <input 
@@ -11,17 +12,16 @@
           placeholder="Input text" 
           formControlName="name"
         />
-        <span 
-          class="text-danger" 
-          *ngIf="registrationForm.get('name')?.errors?.['required'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+        <span class="text-danger" 
+          *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
           This field is required.
         </span>
-        <span 
-          class="text-danger" 
-          *ngIf="registrationForm.get('name')?.errors?.['minlength'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+        <span class="text-danger" 
+          *ngIf="registrationForm.get('name')?.hasError('minlength') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
           Name must be at least 6 characters.
         </span>
       </div>
+
       <div class="form__control">
         <label for="email">Email</label>
         <input 
@@ -32,18 +32,16 @@
           formControlName="email"
           emailValidator
         />
-        <div
-          *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)"
-          class="text-danger"
-        >
-          <span *ngIf="registrationForm.get('email')?.errors?.['required']">
+        <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)" class="text-danger">
+          <span *ngIf="registrationForm.get('email')?.hasError('required')">
             Email is required.
           </span>
-          <span *ngIf="registrationForm.get('email')?.errors?.['invalidEmail']">
+          <span *ngIf="registrationForm.get('email')?.hasError('invalidEmail')">
             Please enter a valid email.
           </span>
         </div>
       </div>
+
       <div class="form__control">
         <label for="password">Password</label>
         <input 
@@ -53,15 +51,13 @@
           placeholder="Input text"
           formControlName="password"
         />
-        <div
-          *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)"
-          class="text-danger"
-        >
-          <span *ngIf="registrationForm.get('password')?.errors?.['required']">
+        <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)" class="text-danger">
+          <span *ngIf="registrationForm.get('password')?.hasError('required')">
             Password is required.
           </span>
         </div>
       </div>
+
     </div>
     <div class="form__action">
       <app-button buttonText="Register" type="submit"></app-button>
