@@ -4,8 +4,8 @@ interface Course {
   id: string;
   title: string;
   description: string;
-  duration: string;
-  creationDate: string;
+  duration: number;
+  creationDate: Date;
   authors: string[];
 }
 

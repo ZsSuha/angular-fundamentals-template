@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ export class AppComponent {
   constructor() {}
   title = 'courses-app';
   headerButtonText = "LOGIN";
-	buttonIconName: "trash" | "pencil" | "" = "";
+	buttonIconName: IconProp | undefined;
 	appInfoText = "Please use 'Add new Course' button to add your first course";
 	appInfoTitle = "Your List Is Empty";
 	appInfoButtonText = "ADD NEW COURSE";

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+npm-debug.log
 
 # testing
 /coverage
@@ -23,3 +24,16 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea/
+.eslintcache
+.babelrc
+babel.config.js
+.babel.config.json
+
+.cache/
+.tmp/
+*.map
+webpack.config.js
+webpack.config.ts
+webpack.common.js
+webpack.dev.js
+webpack.prod.js

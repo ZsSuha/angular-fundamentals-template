@@ -1,5 +1,4 @@
-<button class="app-button">
-  <fa-icon *ngIf="iconName === 'trash'" [icon]="faTrashCan"></fa-icon>
-	<fa-icon *ngIf="iconName === 'pencil'" [icon]="faPencil"></fa-icon>
+<button [type]="type" [disabled]="disabled" class="app-button">
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
     {{ buttonText }}
 </button>
