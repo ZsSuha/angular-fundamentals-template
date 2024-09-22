@@ -5,39 +5,68 @@
 
       <div class="form__control">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Input text" formControlName="name"/>
-        <span id="nameErrorMessage1" class="text-danger" *ngIf="registrationForm.get('name')?.errors?.['required'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="Input text" 
+          formControlName="name"
+        />
+        <span 
+          class="text-danger" 
+          *ngIf="registrationForm.get('name')?.errors?.['required'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
           This field is required
         </span>
-        <span id="nameErrorMessage2" class="text-danger" *ngIf="registrationForm.get('name')?.errors?.['minlength'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+        <span 
+          class="text-danger" 
+          *ngIf="registrationForm.get('name')?.errors?.['minlength'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
           Name must be at least 6 characters
         </span>
       </div>
-
       <div class="form__control">
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Input text" formControlName="email"/>
-        <span id="emailErrorMessage1" class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['required'] && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
-          Email is required.
-        </span>
-        <span id="emailErrorMessage2" class="text-danger" *ngIf="registrationForm.get('email')?.errors?.['email'] && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
-          Please enter a valid email.
-        </span>
+        <input 
+          type="email" 
+          id="emailInput" 
+          name="email" 
+          placeholder="Input text" 
+          formControlName="email"
+        />
+        <div
+          *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)"
+          class="text-danger"
+        >
+          <span *ngIf="registrationForm.get('email')?.errors?.['required']">
+            Email is required.
+          </span>
+          <span *ngIf="registrationForm.get('email')?.errors?.['email']">
+            Please enter a valid email.
+          </span>
+        </div>
       </div>
-
       <div class="form__control">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Input text" formControlName="password"/>
-        <span id="passwordErrorMessage" class="text-danger" *ngIf="registrationForm.get('password')?.errors?.['required'] && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
-          Password is required.
-        </span>
+        <input 
+          type="password"
+          id="passwordInput"
+          name="password"
+          placeholder="Input text"
+          formControlName="password"
+        />
+        <div
+          *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)"
+          class="text-danger"
+        >
+          <span *ngIf="registrationForm.get('password')?.errors?.['required']">
+            Password is required.
+          </span>
+        </div>
       </div>
-    </div>
 
+    </div>
     <div class="form__action">
-      <app-button buttonText="Login" type="submit"></app-button>
+      <app-button buttonText="Register" type="submit"></app-button>
     </div>
-
     <div class="form__text">
       If you have an account you may <strong>Login</strong>
     </div>
