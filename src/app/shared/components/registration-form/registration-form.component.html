@@ -14,8 +14,8 @@
           required
         />
         <span 
-          class="text-danger"
           id="nameErrorMessage1"
+          class="text-danger"
           *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)"
         >
           Name is required.
