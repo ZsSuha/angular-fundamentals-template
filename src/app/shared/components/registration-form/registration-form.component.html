@@ -11,10 +11,11 @@
           name="name" 
           placeholder="Input text" 
           formControlName="name"
+          required
         />
         <span class="text-danger" 
           *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
-          This field is required.
+          Name is required.
         </span>
         <span class="text-danger" 
           *ngIf="registrationForm.get('name')?.hasError('minlength') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
@@ -30,6 +31,7 @@
           name="email" 
           placeholder="Input text" 
           formControlName="email"
+          required
           emailValidator
         />
         <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)" class="text-danger">
@@ -50,8 +52,12 @@
           name="password"
           placeholder="Input text"
           formControlName="password"
+          required
         />
-        <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)" class="text-danger">
+        <div 
+        *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)" 
+        class="text-danger"
+        >
           <span *ngIf="registrationForm.get('password')?.hasError('required')">
             Password is required.
           </span>
