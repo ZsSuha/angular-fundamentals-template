@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '@app/shared/directives/email.directive';
 
 @Component({
@@ -9,6 +9,7 @@ import { emailValidator } from '@app/shared/directives/email.directive';
 })
 export class RegistrationFormComponent {
   registrationForm!: FormGroup;
+
   constructor(private fb: FormBuilder) {
     this.registrationForm = fb.group({
       name: ['', [
@@ -23,14 +24,15 @@ export class RegistrationFormComponent {
         Validators.required
       ]]
     });
- }
- onFormSubmit() {
-  if (this.registrationForm.valid) {
-    console.log(this.registrationForm.value);
-    this.registrationForm.reset();
-  } else {
-    alert('Form is not valid');
-    this.registrationForm.markAllAsTouched(); 
   }
- }
+
+  onFormSubmit() {
+    if (this.registrationForm.valid) {
+      console.log(this.registrationForm.value);
+      this.registrationForm.reset();
+    } else {
+      alert('Form is not valid');
+      this.registrationForm.markAllAsTouched(); 
+    }
+  }
 }

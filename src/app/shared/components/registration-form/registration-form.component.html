@@ -2,7 +2,6 @@
 <div class="app-plate">
   <form [formGroup]="registrationForm" (ngSubmit)="onFormSubmit()">
     <div class="registration-form">
-
       <div class="form__control">
         <label for="name">Name</label>
         <input 
@@ -15,12 +14,12 @@
         <span 
           class="text-danger" 
           *ngIf="registrationForm.get('name')?.errors?.['required'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
-          This field is required
+          This field is required.
         </span>
         <span 
           class="text-danger" 
           *ngIf="registrationForm.get('name')?.errors?.['minlength'] && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
-          Name must be at least 6 characters
+          Name must be at least 6 characters.
         </span>
       </div>
       <div class="form__control">
@@ -31,6 +30,7 @@
           name="email" 
           placeholder="Input text" 
           formControlName="email"
+          emailValidator
         />
         <div
           *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)"
@@ -39,7 +39,7 @@
           <span *ngIf="registrationForm.get('email')?.errors?.['required']">
             Email is required.
           </span>
-          <span *ngIf="registrationForm.get('email')?.errors?.['email']">
+          <span *ngIf="registrationForm.get('email')?.errors?.['invalidEmail']">
             Please enter a valid email.
           </span>
         </div>
@@ -62,7 +62,6 @@
           </span>
         </div>
       </div>
-
     </div>
     <div class="form__action">
       <app-button buttonText="Register" type="submit"></app-button>
