@@ -15,6 +15,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DurationPipe } from './pipes/duration.pipe';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { AuthorNamePipe } from './pipes/author-name.pipe';
 import { EmailValidatorDirective } from '@shared/directives/email.directive';
 
 const components = [
@@ -29,6 +30,7 @@ const components = [
   CourseFormComponent,
   DurationPipe,
   CustomDatePipe,
+  AuthorNamePipe,
   EmailValidatorDirective
 ];
 
