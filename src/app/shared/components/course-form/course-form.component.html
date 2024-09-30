@@ -62,7 +62,7 @@
               <div class="course__authors" *ngIf="authors.length > 0">
                 <div *ngFor="let author of authors.controls; let i = index" class="authors_list">
                   {{ author.get('name')?.value }}
-                  <app-button iconName="plus" (click)="addAuthor(i)"></app-button>
+                  <app-button iconName="plus" (click)="addAuthorToCourseAuthors(i)"></app-button>
                   <app-button iconName="trash" (click)="deleteAuthor(i)"></app-button>
                   </div>
               </div>
@@ -77,8 +77,9 @@
       </div>
     </div>
     <div class="form__action">
-      <app-button buttonText="Cancel"></app-button>
-      <app-button type="submit" buttonText="Create course"></app-button>
+      <app-button buttonText="Cancel" routerLink="courses"></app-button>
+      <app-button type="submit" [buttonText]="courseId ? 'Edit Course' : 'Create Course'" type="submit"
+        [disabled]="courseForm.invalid"></app-button>
     </div>
 </form>
-  
+<app-modal [showModal]="showModal" [title]="modalTitle" [message]="modalMessage" (close)="closeModal()"></app-modal>

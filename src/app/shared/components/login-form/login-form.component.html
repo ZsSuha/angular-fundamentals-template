@@ -52,8 +52,9 @@
       </div>
 
       <div class="form__text">
-        If you don't have an account you may <strong>Register</strong>
+        If you don't have an account you may <strong> <a href="register">Registration</a></strong>
       </div>
     </div>
   </form>
 </div>
+<app-modal [showModal]="showModal" [title]="modalTitle" [message]="modalMessage" (close)="closeModal()"></app-modal>

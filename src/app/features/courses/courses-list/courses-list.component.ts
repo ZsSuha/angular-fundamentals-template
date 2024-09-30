@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { mockedCoursesList } from "@app/shared/mocks/mock";
+import { Router } from "@angular/router";
+import { CoursesStoreService } from "@app/services/courses-store.service";
+import { CourseDTO } from "@app/services/course-info";
 
 @Component({
   selector: 'app-courses-list',
@@ -8,21 +11,23 @@ import { mockedCoursesList } from "@app/shared/mocks/mock";
 })
 export class CoursesListComponent {
   @Input() courses: any[] = mockedCoursesList;
-  @Input() editable!: boolean;
+  @Input() editable: boolean | null = false;
 
   @Output() showCourse = new EventEmitter<void>();
   @Output() editCourse = new EventEmitter<void>();
   @Output() deleteCourse = new EventEmitter<void>();
 
-  handleShowCourse() {
-    console.log("Work in progress...");
+  constructor(
+    private router: Router,
+    private coursesStoreService: CoursesStoreService
+  ) {}
+  handleShowCourse(courseId: string) {
+    this.router.navigate(["/courses/" + courseId]);
   }
-
-  handleEditCourse(course: any) {
-    console.log("Work in progress...", course);
+  handleEditCourse(courseId: string) {
+    this.router.navigate(["/courses/edit/" + courseId]);
   }
-
-  handleDeleteCourse(course: any) {
-    console.log("Work in progress...", course);
+  handleDeleteCourse(courseId: string) {
+    this.coursesStoreService.deleteCourse(courseId);
   }
 }

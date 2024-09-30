@@ -77,7 +77,8 @@
       <app-button buttonText="Register" type="submit"></app-button>
     </div>
     <div class="form__text">
-      If you have an account you may <strong>Login</strong>
+      If you have an account you may <strong><a href="login">Login</a></strong>
     </div>
   </form>
 </div>
+<app-modal [showModal]="showModal" [title]="modalTitle" [message]="modalMessage" (close)="closeModal()"></app-modal>
