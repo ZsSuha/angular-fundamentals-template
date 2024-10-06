@@ -3,6 +3,7 @@ import { mockedCoursesList } from "@app/shared/mocks/mock";
 import { Router } from "@angular/router";
 import { CoursesStoreService } from "@app/services/courses-store.service";
 import { CourseDTO } from "@app/services/course-info";
+import { CoursesStateFacade } from "@app/store/courses/courses.facade";
 
 @Component({
   selector: 'app-courses-list',
@@ -19,7 +20,7 @@ export class CoursesListComponent {
 
   constructor(
     private router: Router,
-    private coursesStoreService: CoursesStoreService
+    private courseFacade: CoursesStateFacade
   ) {}
   handleShowCourse(courseId: string) {
     this.router.navigate(["/courses/" + courseId]);
@@ -28,6 +29,6 @@ export class CoursesListComponent {
     this.router.navigate(["/courses/edit/" + courseId]);
   }
   handleDeleteCourse(courseId: string) {
-    this.coursesStoreService.deleteCourse(courseId);
+    this.courseFacade.deleteCourse(courseId);
   }
 }

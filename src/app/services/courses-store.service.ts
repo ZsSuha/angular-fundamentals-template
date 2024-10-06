@@ -99,22 +99,23 @@ export class CoursesStoreService {
       this.coursesService
         .getCourse(courseId)
         .pipe(
-          switchMap((course) => {
+          switchMap((course: CourseDTO) => {
+            // Check if authors exist and map their IDs to fetch the full author details
             if (course.authors && course.authors.length > 0) {
               return forkJoin(
-                course.authors.map((authorId: string) =>
-                  this.coursesService.getAuthorById(authorId)
+                course.authors.map((author: Author) =>
+                  this.coursesService.getAuthorById(author.id || '')
                 )
               ).pipe(
-                map((authors: any) => {
-                  course.authors = authors;
+                map((authors: Author[]) => {
+                  course.authors = authors; // Assign fetched authors back to the course
                   return course;
                 })
               );
             }
-            return of(course);
+            return of(course); // No authors, just return the course
           }),
-          tap((course) => this.selectedCourse$$.next(course)),
+          tap((course: CourseDTO) => this.selectedCourse$$.next(course)),
           catchError((error) => {
             console.error("Error loading course:", error);
             return of(null);

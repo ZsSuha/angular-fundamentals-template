@@ -2,23 +2,16 @@ import { Injectable } from "@angular/core";
 import { User } from "../services/user-info";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import {
-  BehaviorSubject,
-  catchError,
-  map,
-  Observable,
-  tap,
-  throwError,
-} from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { tap, catchError } from "rxjs/operators";
 import { SessionStorageService } from "./session-storage.service";
 import { UserStoreService } from "@app/user/services/user-store.service";
 
-
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthService {
-    private isAuthorized$$ = new BehaviorSubject<boolean>(this.hasToken());
+  private isAuthorized$$ = new BehaviorSubject<boolean>(this.hasToken());
   public isAuthorized$ = this.isAuthorized$$.asObservable();
 
   constructor(
@@ -37,9 +30,9 @@ export class AuthService {
     );
   }
 
-  logout() {
+  logout(): void {
     this.sessionStorageService.deleteToken();
-    this.isAuthorised = false;
+    this.isAuthorized$$.next(false);
   }
 
   register(user: User): Observable<any> {
@@ -48,21 +41,20 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  get isAuthorised() {
+  get isAuthorised(): boolean {
     return this.isAuthorized$$.value;
   }
-  set isAuthorised(value: boolean) {
-    this.isAuthorized$$.next(value);
-  }
-  getLoginUrl() {
+
+  getLoginUrl(): string {
     return "/login";
   }
-  hasToken(): boolean {
+
+  private hasToken(): boolean {
     return !!this.sessionStorageService.getToken();
   }
-  private handleError(error: HttpErrorResponse) {
-    const errorMessage =
-      error.error?.message || error.message || "An unknown error occurred!";
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    const errorMessage = error.error?.message || error.message || "An unknown error occurred!";
     return throwError(errorMessage);
   }
 }

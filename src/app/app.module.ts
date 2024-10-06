@@ -13,6 +13,11 @@ import { CoursesListComponent } from './features/courses/courses-list/courses-li
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { effects, reducers } from './store/courses';
+import { EffectsModule } from '@ngrx/effects';
+import { CoursesModule } from './features/courses/courses.module';
+import { CourseInfoModule } from './features/course-info/course-info.module';
 
 export const WINDOW = new InjectionToken<Window>('Window', {
   providedIn: 'root',
@@ -20,13 +25,17 @@ export const WINDOW = new InjectionToken<Window>('Window', {
 });
 
 @NgModule({
-  declarations: [AppComponent, CourseInfoComponent, CoursesComponent, CoursesListComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     SharedModule,
+    CoursesModule,
+    CourseInfoModule,
     FontAwesomeModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects)
   ],
   providers: [AuthorizedGuard, NotAuthorizedGuard, CoursesService, CoursesStoreService, 
     { provide: WINDOW, useFactory: () => window },

@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CoursesStoreService } from "@app/services/courses-store.service";
 import { CourseDTO } from "@app/services/course-info";
+import { CoursesStateFacade } from "@app/store/courses/courses.facade";
+
 
 @Component({
   selector: "app-course-info",
@@ -9,15 +11,17 @@ import { CourseDTO } from "@app/services/course-info";
   styleUrls: ["./course-info.component.scss"],
 })
 export class CourseInfoComponent implements OnInit {
-  course$ = this.coursesStoreService.selectedCourse$;
+  
+  course$ = this.coursesFacade.course$; 
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private coursesStoreService: CoursesStoreService
+    private coursesFacade: CoursesStateFacade
   ) {}
   ngOnInit() {
     const courseId = this.activatedRoute.snapshot.paramMap.get("id");
     if (courseId) {
-      this.coursesStoreService.getCourse(courseId);
+      this.coursesFacade.getSingleCourse(courseId);
     }
   }
 }
