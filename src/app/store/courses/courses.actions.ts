@@ -41,15 +41,15 @@ export const requestDeleteCourseFail = createAction(
   props<{ error: any }>()
 );
 // Action for request filter course
-export const requestFilterCourse = createAction(
+export const requestFilteredCourse = createAction(
   CoursesConstants.REQUEST_FILTERED_COURSES,
   props<{ title: string }>()
 );
-export const requestFilterCourseSuccess = createAction(
+export const requestFilteredCourseSuccess = createAction(
   CoursesConstants.REQUEST_FILTERED_COURSES_SUCCESS,
   props<{ courses: CourseDTO[] }>()
 );
-export const requestFilterCourseFail = createAction(
+export const requestFilteredCourseFail = createAction(
   CoursesConstants.REQUEST_FILTERED_COURSES_FAIL,
   props<{ error: any }>()
 );
