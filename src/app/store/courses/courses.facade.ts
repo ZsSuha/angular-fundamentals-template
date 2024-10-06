@@ -14,7 +14,7 @@ import {
   requestCreateCourse,
   requestDeleteCourse,
   requestEditCourse,
-  requestFilteredCourse,
+  requestFilteredCourses,
   requestSingleCourse,
 } from "./courses.actions";
 import { Course } from "@app/services/course-info";
@@ -29,15 +29,17 @@ export class CoursesStateFacade {
   allCourses$ = this.store.select(getAllCourses);
   course$ = this.store.select(getCourse);
   errorMessage$ = this.store.select(getErrorMessage);
+
   constructor(private store: Store<CoursesState>) {}
+  
   getAllCourses() {
     return this.store.dispatch(requestAllCourses());
   }
   getSingleCourse(id: string) {
     return this.store.dispatch(requestSingleCourse({ id }));
   }
-  getFilteredCourse(title: string) {
-    return this.store.dispatch(requestFilteredCourse({ title }));
+  getFilteredCourses(title: string) {
+    return this.store.dispatch(requestFilteredCourses({ title }));
   }
   editCourse(id: string, course: Course) {
     return this.store.dispatch(requestEditCourse({ id, course }));

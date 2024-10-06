@@ -43,7 +43,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.subscriptions.add(adminSubscription);
   }
   filterCourses(event: any) {
-    this.coursesFacade.getFilteredCourse(event);
+    this.coursesFacade.getFilteredCourses(event);
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
