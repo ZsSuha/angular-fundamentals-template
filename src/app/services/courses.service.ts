@@ -85,12 +85,30 @@ export class CoursesService {
     }
   
     getCourse(id: string): Observable<CourseDTO> {
-      return this.http.get(environment.backend_uri + "/courses/" + id).pipe(
-        map((response: any) => {
-          return response.result;
+      return this.http.get<{successful: boolean, result: any}>(`${environment.backend_uri}/courses/${id}`).pipe(
+        switchMap(response => {
+          if (response.successful && response.result) {
+            const course = response.result;
+            return forkJoin(
+              course.authors.map((authorId: string) => this.getAuthorById(authorId))
+            ).pipe(
+              map(authors => ({
+                id: course.id,
+                title: course.title,
+                description: course.description,
+                authors: authors,
+                duration: course.duration,
+                creationDate: course.creationDate
+              }))
+            );
+          } 
+          else {
+            return of({});
+          }
         }),
-        catchError((error) => {
-          throw "Error in getting course: " + error.message;
+        catchError(error => {
+          console.error('Error in getting course:', error);
+          return throwError(() => new Error("Error in getting course: " + error.message));
         })
       );
     }

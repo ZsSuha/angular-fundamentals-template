@@ -8,21 +8,22 @@ import { UserStoreService } from "../services/user-store.service";
     providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-    constructor(private userStore: UserStoreService, private router: Router) {}
-    canActivate():
-      | Observable<boolean | UrlTree>
-      | Promise<boolean | UrlTree>
-      | boolean
-      | UrlTree {
-      return this.userStore.isDataLoaded$.pipe(
-        filter((isLoaded) => isLoaded),
-        take(1),
-        map(() => {
-          if (!this.userStore.isAdmin) {
-            return this.router.createUrlTree(["courses"]);
-          }
-          return true;
-        })
-      );
-    }
+  constructor(private userStore: UserStoreService, private router: Router) {}
+
+  canActivate():
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this.userStore.isDataLoaded$.pipe(
+      filter((isLoaded) => isLoaded),
+      take(1),
+      map(() => {
+        if (!this.userStore.isAdmin) {
+          return this.router.createUrlTree(["courses"]);
+        }
+        return true;
+      })
+    );
+  }
 }

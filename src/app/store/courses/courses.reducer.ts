@@ -111,11 +111,14 @@ export const coursesReducer = createReducer(
     isSingleCourseLoading: true,
     errorMessage: "",
   })),
-  on(requestEditCourseSuccess, (state, { course }) => ({
-    ...state,
-    allCourses: state.allCourses.map(c => c.id === course.id ? convertCourseToDTO(course) : c),
-    isSingleCourseLoading: false,
-  })),
+  on(requestEditCourseSuccess, (state, { course }) => {
+    console.log('Updated course:', course);
+    return {
+      ...state,
+      allCourses: state.allCourses.map(c => c.id === course.id ? convertCourseToDTO(course) : c),
+      isSingleCourseLoading: false,
+    };
+  }),
   on(requestEditCourseFail, (state, { error }) => ({
     ...state,
     isSingleCourseLoading: false,
